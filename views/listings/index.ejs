@@ -35,19 +35,21 @@
     <!-- <form method="get" action="/listings/new">
         <button>Create a new Listing</button>
     </form> -->
+    <div>
      <form id="filterForm" method="get" action="/listings/filter">
       <input type="hidden" name="category" id="categoryInput">
-      <div id="filters" class="col-xs-3">
+      
+      <div id="filters" class="col-xs-3 scrollmenu">
+        <ul class="pagination">
           <div class="filter" data-category="Trending">
               <div class="icon"><i class="fa-solid fa-fire"></i></div>
               <p class="name">Trending</p>
          </div>
-
+         
          <div class="filter" data-category="Rooms">
           <div class="icon"><i class="fa-solid fa-bed"></i></div>
           <p class="name">Rooms</p>
          </div>
-
          <div class="filter" data-category="IconicCities" >
           <div class="icon"><i class="fa-solid fa-city"></i></div>
           <p class="name">IconicCities</p>
@@ -85,6 +87,7 @@
   <div class="icon"><i class="fa-solid fa-ship"></i></div>
   <p class="name">Boats</p>
 </div>
+</ul>
 <button type="submit" style="display: none;"></button>
 </form>
 
@@ -95,6 +98,7 @@
   </div>
 </div>
     </div>
+  </div>
      <!-- </form> -->
     
     </div>
