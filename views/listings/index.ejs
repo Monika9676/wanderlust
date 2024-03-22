@@ -1,5 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 <style>
+  .scrollmenu {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
    #filters{
        display: flex;
        flex-wrap: wrap;
@@ -23,12 +27,18 @@
    .tax-toggle{
      border: 1px solid black;
      border-radius: 1rem;
-     height:3.2rem;
+     height:2.2rem;
      padding:1rem;
-     margin-left: 2rem;
+     margin-left: 3rem;
      display: flex;
      align-items: center;
+     margin-bottom: 0.5rem;
    }
+   @media (max-width: 1024px) {
+  .tax-toggle {
+    display: none;
+  }
+}
 </style>
 <body>
     <!-- <h3>All Listings</h3> -->
@@ -39,7 +49,7 @@
      <form id="filterForm" method="get" action="/listings/filter">
       <input type="hidden" name="category" id="categoryInput">
       
-      <div id="filters" class="col-xs-3 scrollmenu">
+      <div id="filters" class="col-xs-12 scrollmenu">
         <ul class="pagination">
           <div class="filter" data-category="Trending">
               <div class="icon"><i class="fa-solid fa-fire"></i></div>
@@ -97,7 +107,7 @@
     <label class="form-check-label" for="flexSwitchCheckDefault">Default total after taxes</label>
   </div>
 </div>
-    </div>
+  </div>
   </div>
      <!-- </form> -->
     
