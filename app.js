@@ -12,6 +12,7 @@ const User=require("./models/user.js");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 
+const {isLoggedIn,validateListing,isOwner}=require("./middleware.js");
 
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
@@ -23,6 +24,7 @@ const dbURL=process.env.ATLASDB_URL;
 const session=require("express-session");
 const MongoStore=require('connect-mongo');
 const flash=require("connect-flash");
+const wrapAsync = require('./utils/wrapAsync.js');
 
 
 main()
@@ -87,21 +89,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//middleware for flash
+//middleware for flash and user
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     res.locals.currUser=req.user;
     next();
 })
-// app.get("/demoUser",async(req,res,next)=>{
-//     let fakeUser=new User({
-//         email:"monika@gmail.com",
-//         username:"delta-student"
-//     });
-//     let newUser=await User.register(fakeUser,"hello World");
-//     res.send(newUser);
-// })
+
 //middlewares
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);

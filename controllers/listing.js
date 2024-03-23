@@ -5,6 +5,18 @@ module.exports.index=async(req,res)=>{
     const allListings=await Listing.find({});
     res.render("..//views/listings/index.ejs",{allListings});
 }
+// home
+module.exports.home=async(req,res)=>{
+    let allListings = await Listing.find({}).populate('owner');
+    allListings = allListings.filter(listing => listing.owner.username === res.locals.currUser.username);
+    if(allListings.length===0){
+          //flash
+          req.flash("error","No Listing found! Create your Listings First");
+          res.redirect("/listings");
+          return;
+    }
+    res.render("..//views/listings/index.ejs",{allListings});
+}
 // filter
 module.exports.filter=async(req,res)=>{
     const currCategory = req.query.category;

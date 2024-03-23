@@ -14,6 +14,8 @@ router.route("/")
     upload.single('listing[image]'),
     validateListing,
     wrapAsync(listingContoller.createListing));
+//home
+router.get("/home",isLoggedIn,wrapAsync(listingContoller.home));
 //filtering
 router.get("/filter",wrapAsync(listingContoller.filter));
 //search
